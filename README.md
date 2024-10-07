@@ -14,7 +14,7 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 -   [x] Aufbau appsettings.json
 -   [ ] IConfiguration auslesen
 -   [ ] Middleware
--   [ ] Logging in ASP.NET Core
+-   [x] Logging in ASP.NET Core
 
 ## M003 | Model View Controller (MVC)
 
