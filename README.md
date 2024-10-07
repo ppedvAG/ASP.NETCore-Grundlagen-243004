@@ -24,9 +24,15 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 
 ## M004 | Razor Pages
 
-## M005 | Layout und Design
+	-	[x] Overview
+	-	[x] Links setzen
+	-	[x] Details
 
-## M006 | Forms und Validierung
+## M005 | Forms und Validierung
+
+	-	[x] ViewModel Mapping
+	-	[x] Form Post
+	-	[x] ModelState
 
 ## M008 | Weitere Themen
 

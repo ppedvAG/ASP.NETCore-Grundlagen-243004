@@ -1,4 +1,6 @@
 ﻿using BusinessLogic.Contracts;
+using BusinessLogic.Models;
+using DemoMvcApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +26,7 @@ namespace DemoMvcApp.Controllers
         public ActionResult Details(int id)
         {
             var recipe = _recipeService.GetRecipeById(id);
-            return View(recipe);
+            return View(recipe ?? new Recipe());
         }
 
         // GET: RecipeController/Create
@@ -36,11 +38,32 @@ namespace DemoMvcApp.Controllers
         // POST: RecipeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateRecipeViewModel model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    var recipe = new Recipe
+                    {
+                        Name = model.Name,
+                        ImageUrl = model.ImageUrl,
+                        Rating = model.Rating,
+                        PrepTimeMinutes = model.PrepTimeMinutes,
+                        CookTimeMinutes = model.CookTimeMinutes,
+                        CaloriesPerServing = model.CaloriesPerServing,
+                        Difficulty = model.Difficulty,
+                        Cuisine = $"{model.Cuisine}",
+                        MealType = [$"{model.MealType}"],
+                        Instructions = model.Instructions?.Split(Environment.NewLine) ?? [],
+                        Ingredients = model.Ingredients?.Split(Environment.NewLine) ?? [],
+                        Tags = model.Tags?.Split(Environment.NewLine) ?? []
+                    };
+                    _recipeService.AddRecipe(recipe);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                return View();
             }
             catch
             {

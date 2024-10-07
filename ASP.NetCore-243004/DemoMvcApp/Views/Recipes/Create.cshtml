@@ -1,0 +1,80 @@
+﻿@using BusinessLogic.Models.Enums
+@model CreateRecipeViewModel
+
+@{
+    ViewData["Title"] = "Neues Rezept hinzufügen";
+}
+
+<h4>Add new recipe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">ImageUrl</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrepTimeMinutes" class="control-label">Preparing time in minutes</label>
+                <input asp-for="PrepTimeMinutes" class="form-control" type="number" min="0" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CookTimeMinutes" class="control-label">Cooking time in minutes</label>
+                <input asp-for="CookTimeMinutes" class="form-control" type="number" min="0" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Difficulty" class="control-label">Difficulty</label>
+                <select asp-for="Difficulty" class="form-control" asp-items="@Html.GetEnumSelectList<Difficulty>()">
+                    @* <option value="">-- Select --</option> *@
+                </select>
+                <span asp-validation-for="Difficulty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MealType" class="control-label">Type</label>
+                <select asp-for="MealType" class="form-control" asp-items="@Html.GetEnumSelectList<MealType>()">
+                </select>
+                <span asp-validation-for="MealType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cuisine" class="control-label">Cuisine</label>
+                <select asp-for="Cuisine" class="form-control" asp-items="@Html.GetEnumSelectList<Cuisine>()">
+                </select>
+                <span asp-validation-for="Cuisine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label">Rating</label>
+                <input asp-for="Rating" class="form-control" type="number" min="0" max="5" value="0" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CaloriesPerServing" class="control-label">Calories per serving</label>
+                <input asp-for="CaloriesPerServing" class="form-control" type="number" min="0" value="0" />
+                <span asp-validation-for="CaloriesPerServing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label">Tags</label>
+                <input asp-for="Tags" class="form-control" placeholder="tag1, tag2, tag3" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ingredients" class="control-label">Ingredients</label>
+                <textarea asp-for="Ingredients" class="form-control"></textarea>
+                <span asp-validation-for="Ingredients" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Instructions" class="control-label">Instructions</label>
+                <textarea asp-for="Instructions" class="form-control"></textarea>
+                <span asp-validation-for="Instructions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
