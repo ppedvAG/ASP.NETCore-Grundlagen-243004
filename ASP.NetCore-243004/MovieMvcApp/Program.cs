@@ -9,7 +9,7 @@ namespace MovieMvcApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddScoped<IMovieService, MovieService>();
+            builder.Services.AddSingleton<IMovieService, MovieService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieMvcApp.Models;
 using MovieStore.Contracts;
+using MovieStoreApp.Models;
 
 namespace MovieMvcApp.Controllers
 {
@@ -36,16 +38,26 @@ namespace MovieMvcApp.Controllers
         // POST: MoviesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CreateMovieViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
+                var movie = new Movie
+                {
+                    Id = DateTime.Now.Ticks,
+                    Title = model.Title,
+                    Description = model.Description,
+                    Genre = model.Genre,
+                    IMDBRating = model.IMDBRating,
+                    Price = model.Price
+                };
+
+                _movieService.AddMovie(movie);
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(model);
         }
 
         // GET: MoviesController/Edit/5
