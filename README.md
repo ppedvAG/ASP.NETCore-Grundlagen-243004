@@ -4,19 +4,23 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 
 ## M001 | ASP.NET Überblick
 
--   [x] Historie
--   [x] Projekte und Projektmappen
--   [x] ASP.Net Core Empty: Hello, World
+	-   [x] Historie
+	-   [x] Projekte und Projektmappen
+	-   [x] ASP.Net Core Empty: Hello, World
 
 ## M002 | Konfiguration
 
--   [x] IOC mittels Dependency Injection
--   [x] Aufbau appsettings.json
--   [ ] IConfiguration auslesen
--   [ ] Middleware
--   [x] Logging in ASP.NET Core
+	-   [x] IOC mittels Dependency Injection
+	-   [x] Aufbau appsettings.json
+	-   [ ] IConfiguration auslesen
+	-   [ ] Middleware
+	-   [x] Logging in ASP.NET Core
 
 ## M003 | Model View Controller (MVC)
+
+	-	[x] Overview
+	-	[x] Links setzen
+	-	[x] Details
 
 ## M004 | Razor Pages
 
