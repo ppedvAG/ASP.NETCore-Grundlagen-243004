@@ -19,5 +19,7 @@ namespace MovieMvcApp.Models
 
         [Required(ErrorMessage = "Bitte Genre auswaehlen")]
         public MovieGenre Genre { get; set; }
+
+        public IFormFile? Image { get; set; }
     }
 }

@@ -1,3 +1,5 @@
+using BusinessLogic.Contracts;
+using BusinessLogic.Services;
 using MovieStore.Contracts;
 using MovieStoreApp.Services;
 
@@ -10,6 +12,9 @@ namespace MovieMvcApp
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddSingleton<IMovieService, MovieService>();
+            builder.Services.AddTransient<IPhotoService, FileService>();
+            builder.Services.Configure<FileServiceOptions>(builder.Configuration.GetSection("FileServer"));
+            builder.Services.AddHttpClient();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

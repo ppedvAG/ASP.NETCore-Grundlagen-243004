@@ -8,6 +8,7 @@
         public decimal Price { get; set; }
         public double IMDBRating { get; set; }
         public MovieGenre Genre { get; set; }
+        public string ImageUrl { get; set; }
     }
 
     public enum MovieGenre 

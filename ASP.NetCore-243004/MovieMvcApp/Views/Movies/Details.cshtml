@@ -9,19 +9,33 @@
     .header {
         font-weight: bold;
     }
+
+    .grid {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-evenly;
+        align-content: center;
+        gap: 1rem;
+    }
 </style>
 
 <h2>@Model.Title</h2>
 
-
-<label class="header">IMDB Rating</label>
-<p>@Model.IMDBRating</p>
-
-<label class="header">Genre</label>
-<p>@Model.Genre</p>
-
-<label class="header">Price</label>
-<p>@Model.Price</p>
-
-<label class="header">Description</label>
-<p>@Model.Description</p>
+<div class="flex">
+    <img src="@Model.ImageUrl" alt="@Model.Title" style="width: 225px; object-fit: cover" />
+    <div class="grid">
+        <label class="header">IMDB Rating</label>
+        <p>@Model.IMDBRating</p>
+        <label class="header">Genre</label>
+        <p>@Model.Genre</p>
+        <label class="header">Price</label>
+        <p>@Model.Price</p>
+        <label class="header">Description</label>
+        <p>@Model.Description</p>
+    </div>
+</div>

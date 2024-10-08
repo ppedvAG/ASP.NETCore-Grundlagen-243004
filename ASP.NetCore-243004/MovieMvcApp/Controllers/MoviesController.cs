@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BusinessLogic.Contracts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieMvcApp.Models;
 using MovieStore.Contracts;
@@ -9,10 +10,12 @@ namespace MovieMvcApp.Controllers
     public class MoviesController : Controller
     {
         private readonly IMovieService _movieService;
+        private readonly IPhotoService _photoService;
 
-        public MoviesController(IMovieService movieService)
+        public MoviesController(IMovieService movieService, IPhotoService photoService)
         {
             _movieService = movieService;
+            _photoService = photoService;
         }
 
         // GET: MoviesController
@@ -38,8 +41,10 @@ namespace MovieMvcApp.Controllers
         // POST: MoviesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateMovieViewModel model)
+        public async Task<ActionResult> Create(CreateMovieViewModel model)
         {
+            var imageUrl = await UploadImage(model.Image);
+
             if (ModelState.IsValid)
             {
                 var movie = new Movie
@@ -49,7 +54,8 @@ namespace MovieMvcApp.Controllers
                     Description = model.Description,
                     Genre = model.Genre,
                     IMDBRating = model.IMDBRating,
-                    Price = model.Price
+                    Price = model.Price,
+                    ImageUrl = imageUrl
                 };
 
                 _movieService.AddMovie(movie);
@@ -58,6 +64,23 @@ namespace MovieMvcApp.Controllers
             }
 
             return View(model);
+        }
+
+        private async Task<string> UploadImage(IFormFile? file)
+        {
+            if (file != null)
+            {
+                using var stream = file.OpenReadStream();
+                try
+                {
+                    return await _photoService.UploadFile(file.FileName, stream);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Image", ex.Message);
+                }
+            }
+            return string.Empty;
         }
 
         // GET: MoviesController/Edit/5
