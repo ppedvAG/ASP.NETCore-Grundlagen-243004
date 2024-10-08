@@ -1,4 +1,5 @@
 using BusinessLogic.Data;
+using BusinessLogic.Services;
 
 namespace BusinessLogic.Test
 {
@@ -9,6 +10,22 @@ namespace BusinessLogic.Test
         public void LoadFromJsonFile_ReturnsListOfRecipes()
         {
             var result = RecipeReader.FromJsonFile();
+
+            // Assert
+            Assert.IsNotNull(result, "Die Liste mit Rezepten sollte nicht null sein.");
+            Assert.IsTrue(result.Any(), "Die Liste sollte mindestens ein Rezept enthalten.");
+            Assert.IsTrue(result[0].MealType.Length > 0, "Das Rezept sollte eine MealType besitzen.");
+        }
+
+        [TestMethod]
+        public void LoadFromDatabase_ReturnsListOfRecipes()
+        {
+            // Arrange
+            using var context = new TestDatabase().Context;
+            var service = new RecipeService(context);
+
+            // Act
+            var result = service.GetAllRecipes();
 
             // Assert
             Assert.IsNotNull(result, "Die Liste mit Rezepten sollte nicht null sein.");

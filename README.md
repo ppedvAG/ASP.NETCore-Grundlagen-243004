@@ -52,6 +52,16 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-   [x] O/R Mapping Framework EFCore
 	-   [x] Code First Ansatz (Entites + DbContext)
 	-   [x] DB Migration
+
+```bash
+// Package Manager Console aufrufen
+
+Add-Migration InitMyModel -Context MyAppDbContext
+
+Update-Database
+
+```
+
 	-   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
 	-   [ ] DB First Ansatz
 	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)

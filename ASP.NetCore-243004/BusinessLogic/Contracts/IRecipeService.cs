@@ -7,7 +7,7 @@ namespace BusinessLogic.Contracts
         void AddRecipe(Recipe recipe);
         bool DeleteRecipe(int id);
         List<Recipe> GetAllRecipes();
-        Recipe GetRecipeById(int id);
+        Recipe? GetRecipeById(int id);
         void UpdateRecipe(Recipe recipe);
     }
 }
