@@ -20,6 +20,12 @@ namespace DemoMvcApp
 
             builder.Services.AddScoped<IRecipeService, RecipeService>();
 
+            // Optionen fuer den FileServer aufloesen
+            builder.Services.AddTransient<IPhotoService, FileService>();
+            var fileConfig = builder.Configuration.GetSection("FileServer");
+            builder.Services.Configure<FileServiceOptions>(fileConfig);
+            builder.Services.AddHttpClient();
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 

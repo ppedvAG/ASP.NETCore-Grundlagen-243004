@@ -36,16 +36,19 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 
 	-	[x] Static Files und Directory Browser
 	-   [x] File Provider und Dateizugriff
+	-	[x] [Hoppscotch](https://hoppscotch.io/) (Postman Alternative)
+	-   [x] API mit [httpFile testen](https://learn.microsoft.com/de-de/aspnet/core/test/http-files?view=aspnetcore-8.0) 
 	-   [ ] Middleware
 
-## M006 | HttpClient verwenden
+## M007 | HttpClient verwenden
 
-	-   [ ] Konfiguration auslesen
-	-   [ ] HttpClient verwenden
+	-   [x] Konfiguration auslesen
+	-   [x] HttpClient verwenden
+	-   [x] MultipartFormDataContent
+	-   [x] HttpContext, Request, Response
 
 ## M008 | Weitere Themen
 
-	-   [ ] HttpContext
 	-   [ ] Cookie Handling
 	-   [ ] Server Caching
 

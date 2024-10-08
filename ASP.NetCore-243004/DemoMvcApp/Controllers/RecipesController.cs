@@ -9,10 +9,12 @@ namespace DemoMvcApp.Controllers
     public class RecipesController : Controller
     {
         private readonly IRecipeService _recipeService;
+        private readonly IPhotoService _photoService;
 
-        public RecipesController(ILogger<RecipesController> logger, IRecipeService recipeService)
+        public RecipesController(ILogger<RecipesController> logger, IRecipeService recipeService, IPhotoService photoService)
         {
             _recipeService = recipeService;
+            _photoService = photoService;
         }
 
         // GET: RecipeController
@@ -38,16 +40,18 @@ namespace DemoMvcApp.Controllers
         // POST: RecipeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateRecipeViewModel model)
+        public async Task<ActionResult> Create(CreateRecipeViewModel model)
         {
             try
             {
+                string imageUrl = await UploadImage(model.Image);
+
                 if (ModelState.IsValid)
                 {
                     var recipe = new Recipe
                     {
                         Name = model.Name,
-                        ImageUrl = model.ImageUrl,
+                        ImageUrl = imageUrl,
                         Rating = model.Rating,
                         PrepTimeMinutes = model.PrepTimeMinutes,
                         CookTimeMinutes = model.CookTimeMinutes,
@@ -69,6 +73,23 @@ namespace DemoMvcApp.Controllers
             {
                 return View();
             }
+        }
+
+        private async Task<string> UploadImage(IFormFile? file)
+        {
+            if (file != null)
+            {
+                using var stream = file.OpenReadStream();
+                try
+                {
+                    return await _photoService.UploadFile(file.FileName, stream);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("Image", ex.Message);
+                }
+            }
+            return string.Empty;
         }
 
         // GET: RecipeController/Edit/5

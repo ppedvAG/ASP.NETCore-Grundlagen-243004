@@ -8,8 +8,7 @@ namespace DemoMvcApp.Models
         [Required(ErrorMessage = "Rezeptname muss angegeben werden")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Bitte Bildpfad angeben")]
-        public string ImageUrl { get; set; }
+        public IFormFile? Image { get; set; }
 
         public string? Ingredients { get; set; }
 
