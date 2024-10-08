@@ -32,11 +32,15 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-	[x] Form Post
 	-	[x] ModelState
 
-## M006 | FileServer mit HttpClient verwenden
+## M006 | FileServer erstellen
 
-	-	[ ] Static Files und Directory Browser
-	-   [ ] Konfiguration auslesen
+	-	[x] Static Files und Directory Browser
+	-   [x] File Provider und Dateizugriff
 	-   [ ] Middleware
+
+## M006 | HttpClient verwenden
+
+	-   [ ] Konfiguration auslesen
 	-   [ ] HttpClient verwenden
 
 ## M008 | Weitere Themen
@@ -44,7 +48,6 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-   [ ] HttpContext
 	-   [ ] Cookie Handling
 	-   [ ] Server Caching
-	-   [ ] File Provider und Dateizugriff
 
 ## M010 | Entity Framework
 
