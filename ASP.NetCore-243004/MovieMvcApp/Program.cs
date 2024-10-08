@@ -1,5 +1,6 @@
 using BusinessLogic.Contracts;
 using BusinessLogic.Services;
+using MovieMvcApp.Middleware;
 using MovieStore.Contracts;
 using MovieStoreApp.Services;
 
@@ -28,6 +29,8 @@ namespace MovieMvcApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseRequestCultureMiddleware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
