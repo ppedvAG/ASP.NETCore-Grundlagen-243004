@@ -23,11 +23,17 @@ namespace Lab002_DependencyInjection
             var operationTransient2 = provider.GetService<IOperationTransient>();
             Console.WriteLine("Transient #2: " + operationTransient2.OperationId);
 
-            var classicInstance = new ConsumerClass(operationTransient);
+            var classicInstance = new ConsumerClass(operationTransient, operationSingleton);
+
+            var ctorParams = typeof(ConsumerClass).GetConstructors()[0].GetParameters();
+            foreach (var item in ctorParams)
+            {
+                Console.WriteLine($"Parameter: {item.ParameterType} {item.Name}");
+            }
 
             // Beispiel wie mit Reflection eine Klasse (Service) dynamisch mit Abhängigkeiten (Dependencies) erzeugt wird
             // Das wird vom ASP.Net Core Framework automatisch übernommen
-            ConsumerClass dynamicInstance = (ConsumerClass)Activator.CreateInstance(typeof(ConsumerClass), operationTransient);
+            ConsumerClass dynamicInstance = (ConsumerClass)Activator.CreateInstance(typeof(ConsumerClass), operationTransient, operationSingleton);
 
             Console.ReadLine();
         }
@@ -43,9 +49,9 @@ namespace Lab002_DependencyInjection
 
         public class ConsumerClass
         {
-            public ConsumerClass(IOperationTransient operation)
+            public ConsumerClass(IOperationTransient transient, IOperationSingleton singleton)
             {
-                Console.WriteLine("Foo says " + operation.OperationId);
+                Console.WriteLine("Foo says " + transient.OperationId);
             }
         }
     }
