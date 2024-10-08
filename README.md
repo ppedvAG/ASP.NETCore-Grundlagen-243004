@@ -12,8 +12,6 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 
 	-   [x] IOC mittels Dependency Injection
 	-   [x] Aufbau appsettings.json
-	-   [ ] IConfiguration auslesen
-	-   [ ] Middleware
 	-   [x] Logging in ASP.NET Core
 
 ## M003 | Model View Controller (MVC)
@@ -34,12 +32,19 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-	[x] Form Post
 	-	[x] ModelState
 
+## M006 | FileServer mit HttpClient verwenden
+
+	-	[ ] Static Files und Directory Browser
+	-   [ ] Konfiguration auslesen
+	-   [ ] Middleware
+	-   [ ] HttpClient verwenden
+
 ## M008 | Weitere Themen
 
--   [ ] HttpContext
--   [ ] Cookie Handling
--   [ ] Server Caching
--   [ ] File Provider und Dateizugriff
+	-   [ ] HttpContext
+	-   [ ] Cookie Handling
+	-   [ ] Server Caching
+	-   [ ] File Provider und Dateizugriff
 
 ## M010 | Entity Framework
 
@@ -48,9 +53,9 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
     - Microsoft.EntityFrameworkCore.Tools
 -->
 
--   [ ] O/R Mapping Framework EFCore
--   [ ] Code First Ansatz (Entites + DbContext)
--   [ ] DB Migration
+	-   [ ] O/R Mapping Framework EFCore
+	-   [ ] Code First Ansatz (Entites + DbContext)
+	-   [ ] DB Migration
 
 ```bash
 	dotnet tool install --global dotnet-ef
@@ -68,9 +73,9 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	```
 -->
 
--   [ ] DB First Ansatz
--   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
--   [ ] LocalDB
+	-   [ ] DB First Ansatz
+	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
+	-   [ ] LocalDB
 
 <!--
 	```bash
