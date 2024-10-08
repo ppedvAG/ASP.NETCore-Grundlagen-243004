@@ -29,7 +29,7 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 ## M005 | Forms und Validierung
 
 	-	[x] ViewModel Mapping
-	-	[x] Form Post
+	-	[x] Form Post & Validierung
 	-	[x] ModelState
 
 ## M006 | FileServer erstellen
@@ -47,55 +47,31 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-   [x] MultipartFormDataContent
 	-   [x] HttpContext, Request, Response
 
-## M008 | Weitere Themen
+## M008 | Entity Framework
 
-	-   [ ] Cookie Handling
-	-   [ ] Server Caching
-
-## M010 | Entity Framework
-
-<!--
-    - Microsoft.EntityFrameworkCore.SqlServer
-    - Microsoft.EntityFrameworkCore.Tools
--->
-
-	-   [ ] O/R Mapping Framework EFCore
-	-   [ ] Code First Ansatz (Entites + DbContext)
-	-   [ ] DB Migration
-
-```bash
-	dotnet tool install --global dotnet-ef
-	dotnet ef migrations add <script-name> --project <BusinessLogic>
-	dotnet ef database update --project <BusinessLogic>
-	dotnet watch run
-```
-
--   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
-<!--
-	```bash
-	dotnet tool install -g dotnet-aspnet-codegenerator
-
-	dotnet-aspnet-codegenerator controller -name YourModelController -m YourModel -dc NorthwindDbContext -outDir Controllers -udl
-	```
--->
-
+	-   [x] O/R Mapping Framework EFCore
+	-   [x] Code First Ansatz (Entites + DbContext)
+	-   [x] DB Migration
+	-   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
 	-   [ ] DB First Ansatz
 	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
 	-   [ ] LocalDB
 
-<!--
-	```bash
-		SqlLocalDB create <InstanceName>
-		SqlLocalDB start <InstanceName>
-		SqlLocalDB info <InstanceName>
+## M009 | Entity Framework
 
-		-- Datenbank erstellen
-		sqlcmd -S "(localdb)\mssqllocaldb" -Q "CREATE DATABASE NORTHWND;"
+	-   [ ] Unit Tests mit EntityFramework
+	-   [ ] OrderService anhand von Tests entwickeln
 
-		-- Script ausführen
-		sqlcmd -S "(localdb)\mssqllocaldb" -d NORTHWND -i instnwnd.sql
 
-		-- Ausführung überprüfen
-		sqlcmd -S "(localdb)\mssqllocaldb" -d NORTHWND -Q "SELECT * FROM sys.tables;"
-	```
--->
+## M010 | Benutzerverwaltung
+
+	-   [ ] AspNetCore.Identity.EFCore
+	-	[ ] CodeFirst & Migration
+	-   [ ] UserManager & SignInManager
+	-	[ ] Form Post & Validierung
+
+
+## M011 | Weitere Themen
+
+	-   [ ] Cookie Handling
+	-   [ ] Server Caching

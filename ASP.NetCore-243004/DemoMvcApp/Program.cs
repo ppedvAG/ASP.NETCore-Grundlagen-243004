@@ -1,5 +1,8 @@
 using BusinessLogic.Contracts;
+using BusinessLogic.Data;
 using BusinessLogic.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace DemoMvcApp
@@ -25,6 +28,13 @@ namespace DemoMvcApp
             var fileConfig = builder.Configuration.GetSection("FileServer");
             builder.Services.Configure<FileServiceOptions>(fileConfig);
             builder.Services.AddHttpClient();
+
+            // Datenbankverbindung konfigurieren
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<FoodDeliveryDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+            });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
