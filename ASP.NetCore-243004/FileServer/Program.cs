@@ -1,4 +1,5 @@
 
+using FileServer.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.FileProviders;
 
@@ -16,6 +17,9 @@ namespace FileServer
             var fileProvider = InitFileProvider(builder.Environment, FILE_PATH);
 
             var app = builder.Build();
+
+            // Middleware fuer API-Key Check verwenden
+            app.UseSecuredAccess();
 
             app.UseStaticFiles(new StaticFileOptions
             {

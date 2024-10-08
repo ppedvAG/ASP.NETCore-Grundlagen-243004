@@ -8,6 +8,8 @@ namespace BusinessLogic.Services
     public class FileServiceOptions
     {
         public string BaseUrl { get; set; }
+
+        public string ApiKey { get; set; }
     }
 
     public class FileService : IPhotoService
@@ -18,6 +20,7 @@ namespace BusinessLogic.Services
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(options.Value.BaseUrl);
+            _httpClient.DefaultRequestHeaders.Add("X-Api-Key", options.Value.ApiKey);
         }
 
         public async Task<string> UploadFile(string fileName, Stream stream)
