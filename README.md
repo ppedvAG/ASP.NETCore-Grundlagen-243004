@@ -63,14 +63,14 @@ Update-Database
 
 ```
 
-	-   [x] Unit Tests mit EntityFramework
-	-   [x] OrderService anhand von Tests entwickeln
-
 ## M009 | Entity Framework DB First
 
-	-   [ ] DB First Ansatz
-	-   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
-	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
+	-   [x] Unit Tests mit EntityFramework
+	-   [x] OrderService anhand von Tests entwickeln
+	-   [x] DB First Ansatz
+	-	[x] VS Extension [EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
+	-   [x] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
+	-   [x] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
 
 
 ## M010 | Benutzerverwaltung

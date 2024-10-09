@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileServer", "FileServer\Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStore.Test", "MovieStore.Test\MovieStore.Test.csproj", "{ED5A57A8-4971-4C83-93BB-2BDBAE532B49}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "M008 DB-First", "M008 DB-First", "{129DB863-C32E-42D6-89FA-C2D34D7AF5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthwindWebApp", "NorthwindWebApp\NorthwindWebApp.csproj", "{54545ECD-5535-46D9-AF2D-3930623040EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +93,10 @@ Global
 		{ED5A57A8-4971-4C83-93BB-2BDBAE532B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5A57A8-4971-4C83-93BB-2BDBAE532B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED5A57A8-4971-4C83-93BB-2BDBAE532B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54545ECD-5535-46D9-AF2D-3930623040EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54545ECD-5535-46D9-AF2D-3930623040EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54545ECD-5535-46D9-AF2D-3930623040EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54545ECD-5535-46D9-AF2D-3930623040EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +113,7 @@ Global
 		{6B830737-4F3E-4777-9F84-5F3E74A7FEB6} = {B2DAD353-E379-4B4E-A92B-FCD3FDBC995D}
 		{15278764-F1D0-470B-BF81-FCF6B24459F8} = {C8636B50-7432-4EEB-9629-991010EA5E30}
 		{ED5A57A8-4971-4C83-93BB-2BDBAE532B49} = {B2DAD353-E379-4B4E-A92B-FCD3FDBC995D}
+		{54545ECD-5535-46D9-AF2D-3930623040EE} = {129DB863-C32E-42D6-89FA-C2D34D7AF5A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B411DF32-11A2-4DD4-9B44-9A34AB237A6F}
