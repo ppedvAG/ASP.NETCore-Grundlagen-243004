@@ -1,7 +1,9 @@
 using BusinessLogic.Contracts;
 using BusinessLogic.Services;
+using Microsoft.EntityFrameworkCore;
 using MovieMvcApp.Middleware;
 using MovieStore.Contracts;
+using MovieStoreApp.Data;
 using MovieStoreApp.Services;
 
 namespace MovieMvcApp
@@ -12,13 +14,19 @@ namespace MovieMvcApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<IMovieService, MovieService>();
+            builder.Services.AddTransient<IMovieService, MovieService>();
             builder.Services.AddTransient<IPhotoService, FileService>();
             builder.Services.Configure<FileServiceOptions>(builder.Configuration.GetSection("FileServer"));
             builder.Services.AddHttpClient();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<MovieDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+            });
 
             var app = builder.Build();
 

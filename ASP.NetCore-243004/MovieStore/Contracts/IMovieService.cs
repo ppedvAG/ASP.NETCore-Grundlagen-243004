@@ -6,7 +6,7 @@ namespace MovieStore.Contracts
     {
         void AddMovie(Movie movie);
         IList<Movie> GetMovies();
-        Movie? GetById(int id);
+        Movie? GetById(long id);
         void RemoveMovie(Movie movie);
         void UpdateMovie(Movie movie);
     }
