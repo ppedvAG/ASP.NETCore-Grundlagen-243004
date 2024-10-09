@@ -25,7 +25,7 @@ namespace BusinessLogic.Test
             var service = new RecipeService(context);
 
             // Act
-            var result = await service.GetAllRecipes();
+            var result = await service.GetAllRecipes(1);
 
             // Assert
             Assert.IsNotNull(result, "Die Liste mit Rezepten sollte nicht null sein.");

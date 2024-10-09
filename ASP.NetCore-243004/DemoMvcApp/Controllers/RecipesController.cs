@@ -18,10 +18,10 @@ namespace DemoMvcApp.Controllers
         }
 
         // GET: RecipeController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int pageNumber = 1)
         {
-            var recipes = await _recipeService.GetAllRecipes();
-            return View(recipes.Take(9));
+            var recipes = await _recipeService.GetAllRecipes(pageNumber);
+            return View(recipes);
         }
 
         // GET: RecipeController/Details/5

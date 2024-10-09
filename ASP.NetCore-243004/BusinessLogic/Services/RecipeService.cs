@@ -14,9 +14,14 @@ namespace BusinessLogic.Services
             _context = context;
         }
 
-        public Task<List<Recipe>> GetAllRecipes()
+        public async Task<PaginatedList<Recipe>> GetAllRecipes(int pageIndex, int pageSize = 20)
         {
-            return _context.Recipes.ToListAsync();
+            var count = await _context.Recipes.CountAsync();
+            var items = await _context.Recipes
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return new PaginatedList<Recipe>(items, count, pageIndex, pageSize);
         }
 
         public Task<Recipe?> GetRecipeById(int id)

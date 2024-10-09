@@ -18,7 +18,7 @@ namespace HelloIoC.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_recipeService.GetAllRecipes());
+            return Ok(_recipeService.GetAllRecipes(1));
         }
     }
 }

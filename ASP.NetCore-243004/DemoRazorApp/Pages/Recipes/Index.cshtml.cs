@@ -18,7 +18,7 @@ namespace DemoRazorApp.Pages.Recipes
 
         public async Task OnGet()
         {
-            Recipes = await _recipeService.GetAllRecipes();
+            Recipes = await _recipeService.GetAllRecipes(1);
         }
     }
 }

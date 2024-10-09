@@ -6,7 +6,7 @@ namespace BusinessLogic.Contracts
     {
         Task AddRecipe(Recipe recipe);
         Task<bool> DeleteRecipe(int id);
-        Task<List<Recipe>> GetAllRecipes();
+        Task<PaginatedList<Recipe>> GetAllRecipes(int pageIndex, int pageSize = 20);
         Task<Recipe?> GetRecipeById(int id);
         Task UpdateRecipe(Recipe recipe);
     }

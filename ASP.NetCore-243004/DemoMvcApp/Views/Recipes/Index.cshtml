@@ -1,11 +1,36 @@
 ﻿@using BusinessLogic.Models
 
-@model IEnumerable<Recipe>
+@model PaginatedList<Recipe>
 @{
     ViewData["Title"] = "Rezeptübersicht";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
 <h1>Rezeptübersicht</h1>
+
+<p style="text-align: center">
+    <a asp-action="Index"
+       asp-route-pageNumber="1"
+       class="btn btn-default">
+        |&lt; First
+    </a>
+    <a asp-action="Index"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+        class="btn btn-default @prevDisabled">
+        &lt;&lt; Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       class="btn btn-default @nextDisabled">
+       Next &gt;&gt;
+    </a>
+    <a asp-action="Index"
+       asp-route-pageNumber="@(Model.TotalPages)"
+       class="btn btn-default">
+        Last &gt;|
+    </a>
+</p>
 
 <div class="album py-5 bg-light">
     <div class="container">
