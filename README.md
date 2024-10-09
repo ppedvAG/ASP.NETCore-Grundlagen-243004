@@ -47,10 +47,11 @@ Kurs Repository zum Kurs ASP.NET Core Grundkurs der ppedv AG.
 	-   [x] MultipartFormDataContent
 	-   [x] HttpContext, Request, Response
 
-## M008 | Entity Framework
+## M008 | Entity Framework Code First
 
 	-   [x] O/R Mapping Framework EFCore
 	-   [x] Code First Ansatz (Entites + DbContext)
+	-   [x] LocalDB
 	-   [x] DB Migration
 
 ```bash
@@ -62,15 +63,14 @@ Update-Database
 
 ```
 
-	-   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
-	-   [ ] DB First Ansatz
-	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
-	-   [ ] LocalDB
-
-## M009 | Entity Framework
-
 	-   [ ] Unit Tests mit EntityFramework
 	-   [ ] OrderService anhand von Tests entwickeln
+
+## M009 | Entity Framework DB First
+
+	-   [ ] DB First Ansatz
+	-   [ ] Controller mit Scaffolding erstellen (Microsoft.EntityFrameworkCore.Design)
+	-   [ ] [Northwind DB](https://github.com/microsoft/sql-server-samples/blob/master/samples/databases/northwind-pubs/instnwnd.sql)
 
 
 ## M010 | Benutzerverwaltung

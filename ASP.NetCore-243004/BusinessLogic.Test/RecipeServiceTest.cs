@@ -18,14 +18,14 @@ namespace BusinessLogic.Test
         }
 
         [TestMethod]
-        public void LoadFromDatabase_ReturnsListOfRecipes()
+        public async Task LoadFromDatabase_ReturnsListOfRecipes()
         {
             // Arrange
             using var context = new TestDatabase().Context;
             var service = new RecipeService(context);
 
             // Act
-            var result = service.GetAllRecipes();
+            var result = await service.GetAllRecipes();
 
             // Assert
             Assert.IsNotNull(result, "Die Liste mit Rezepten sollte nicht null sein.");

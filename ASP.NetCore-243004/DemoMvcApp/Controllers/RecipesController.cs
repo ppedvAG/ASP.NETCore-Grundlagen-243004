@@ -18,21 +18,21 @@ namespace DemoMvcApp.Controllers
         }
 
         // GET: RecipeController
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var recipes = _recipeService.GetAllRecipes();
+            var recipes = await _recipeService.GetAllRecipes();
             return View(recipes.Take(9));
         }
 
         // GET: RecipeController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var recipe = _recipeService.GetRecipeById(id);
+            var recipe = await _recipeService.GetRecipeById(id);
             return View(recipe ?? new Recipe());
         }
 
         // GET: RecipeController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
             return View();
         }
@@ -63,7 +63,9 @@ namespace DemoMvcApp.Controllers
                         Ingredients = model.Ingredients?.Split(Environment.NewLine) ?? [],
                         Tags = model.Tags?.Split(Environment.NewLine) ?? []
                     };
-                    _recipeService.AddRecipe(recipe);
+
+                    // Wenn eine Exception auftritt und wir das nicht awaiten, dann wuerden wir das nicht mitbekommen weil die Exception "verschluckt" wird
+                    await _recipeService.AddRecipe(recipe);
 
                     return RedirectToAction(nameof(Index));
                 }
@@ -93,15 +95,16 @@ namespace DemoMvcApp.Controllers
         }
 
         // GET: RecipeController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var recipe = await _recipeService.GetRecipeById(id);
+            return View(recipe);
         }
 
         // POST: RecipeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, IFormCollection collection)
         {
             try
             {
@@ -113,20 +116,19 @@ namespace DemoMvcApp.Controllers
             }
         }
 
-        // GET: RecipeController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: RecipeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (await _recipeService.DeleteRecipe(id))
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                ModelState.AddModelError("Delete", "Recipe could not be deleted");
+                return View();
             }
             catch
             {

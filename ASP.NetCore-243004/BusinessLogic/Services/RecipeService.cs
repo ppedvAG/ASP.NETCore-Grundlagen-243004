@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Contracts;
 using BusinessLogic.Data;
 using BusinessLogic.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
@@ -13,33 +14,33 @@ namespace BusinessLogic.Services
             _context = context;
         }
 
-        public List<Recipe> GetAllRecipes()
+        public Task<List<Recipe>> GetAllRecipes()
         {
-            return _context.Recipes.ToList();
+            return _context.Recipes.ToListAsync();
         }
 
-        public Recipe? GetRecipeById(int id)
+        public Task<Recipe?> GetRecipeById(int id)
         {
-            return _context.Recipes.FirstOrDefault(r => r.Id == id);
+            return _context.Recipes.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public void AddRecipe(Recipe recipe)
+        public async Task AddRecipe(Recipe recipe)
         {
             _context.Recipes.Add(recipe);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateRecipe(Recipe recipe)
+        public async Task UpdateRecipe(Recipe recipe)
         {
             _context.Update(recipe);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public bool DeleteRecipe(int id)
+        public async Task<bool> DeleteRecipe(int id)
         {
-            var recipe = GetRecipeById(id);
+            var recipe = await GetRecipeById(id);
             if (recipe == null)
             {
                 return false;
@@ -47,7 +48,7 @@ namespace BusinessLogic.Services
 
             _context.Recipes.Remove(recipe);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return true;
         }
 
