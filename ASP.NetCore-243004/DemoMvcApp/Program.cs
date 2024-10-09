@@ -1,6 +1,8 @@
 using BusinessLogic.Contracts;
 using BusinessLogic.Data;
 using BusinessLogic.Services;
+using DemoMvcApp.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -22,6 +24,7 @@ namespace DemoMvcApp
             builder.Host.UseSerilog();
 
             builder.Services.AddScoped<IRecipeService, RecipeService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             // Optionen fuer den FileServer aufloesen
             builder.Services.AddTransient<IPhotoService, FileService>();
@@ -35,6 +38,12 @@ namespace DemoMvcApp
             {
                 options.UseSqlServer(connectionString);
             });
+            builder.Services.AddSqlServer<AccountDbContext>(builder.Configuration.GetConnectionString("AccountConnection"));
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<AccountDbContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -72,6 +81,7 @@ namespace DemoMvcApp
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapControllerRoute(
                 name: "default",

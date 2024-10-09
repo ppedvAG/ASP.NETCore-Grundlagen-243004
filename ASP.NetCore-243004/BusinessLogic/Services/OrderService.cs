@@ -1,11 +1,12 @@
-﻿using BusinessLogic.Data;
+﻿using BusinessLogic.Contracts;
+using BusinessLogic.Data;
 using BusinessLogic.Models;
 using BusinessLogic.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogic.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly FoodDeliveryDbContext _context;
 
@@ -38,7 +39,12 @@ namespace BusinessLogic.Services
 
         private Task<Order?> GetPendingOrderByUserName(string userName)
         {
-            return _context.Orders.FirstOrDefaultAsync(o => o.UserName == userName && o.Status == OrderStatus.Pending);
+            // Standardverhalten von EF Core ist Lazy Loading.
+            // Deshalb muessen wir mit Include die Abhaengigkeiten explizit laden.
+            return _context.Orders
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Recipe)
+                .FirstOrDefaultAsync(o => o.UserName == userName && o.Status == OrderStatus.Pending);
         }
 
         public async Task<bool> FinishOrder(string userName, float rating)

@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Contracts;
 using BusinessLogic.Models;
 using DemoMvcApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +11,13 @@ namespace DemoMvcApp.Controllers
     {
         private readonly IRecipeService _recipeService;
         private readonly IPhotoService _photoService;
+        private readonly IOrderService _orderService;
 
-        public RecipesController(ILogger<RecipesController> logger, IRecipeService recipeService, IPhotoService photoService)
+        public RecipesController(ILogger<RecipesController> logger, IRecipeService recipeService, IPhotoService photoService, IOrderService orderService)
         {
             _recipeService = recipeService;
             _photoService = photoService;
+            _orderService = orderService;
         }
 
         // GET: RecipeController
@@ -31,13 +34,28 @@ namespace DemoMvcApp.Controllers
             return View(recipe ?? new Recipe());
         }
 
-        // GET: RecipeController/Create
+        public Task<ActionResult> Order(int id)
+        {
+            return Order(id, 1);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Order(int id, int quantity)
+        {
+            var name = HttpContext.User.Identity.Name;
+            var recipe = await _recipeService.GetRecipeById(id);
+            await _orderService.UpdateOrder(name, recipe, quantity);
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             return View();
         }
 
-        // POST: RecipeController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateRecipeViewModel model)

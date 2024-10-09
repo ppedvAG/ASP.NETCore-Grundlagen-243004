@@ -6,5 +6,8 @@
     <h1 class="display-4">Welcome</h1>
     <a role="button" class="btn btn-primary my-4" asp-area="" asp-controller="Recipes" asp-action="Index">Alle Rezepte ansehen</a>
     </br>
-    <a role="button" class="btn btn-outline-dark my-4" asp-area="" asp-controller="Recipes" asp-action="Create">Neues Rezept hinzufügen</a>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a role="button" class="btn btn-outline-dark my-4" asp-area="" asp-controller="Recipes" asp-action="Create">Neues Rezept hinzufügen</a>
+    }
 </div>
